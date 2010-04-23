@@ -198,7 +198,7 @@ $.widget("ui.multiselect", {
 	selectNone: function() {
 		if (this.enabled()) {
 			//User Confirmation before Deleting
-			var xconfirm=window.confirm("Tem certeza que deseja retirar todos os itens?")
+			var xconfirm=window.confirm("Are you sure you want to remove all items?")
 			if (xconfirm){
 				this._batchSelect(this.selectedList.children('li.ui-element:visible'), false);
 			}//xconfirm
@@ -755,7 +755,7 @@ $.widget("ui.multiselect", {
 		var that = this;
 		elements.unbind('click.multiselect').bind('click.multiselect', function() {
 			//User Confirmation before Deleting
-			var xconfirm=window.confirm("Tem certeza que deseja retirar esse item?")
+			var xconfirm=window.confirm("Are you sure you want to remove this iten?")
 			if (xconfirm){
 				// ignore if busy...
 				if (!that.busy) {
@@ -889,9 +889,9 @@ var _dragHelper = function(event, ui) {
 $.extend($.ui.multiselect, {
 	getter: 'selectedValues enabled isBusy',
 	locale: {
-		addAll:'Ad. Todos',
-		removeAll:'Remover Todos',
-		itemsCount:'#{count} itens selecionados',
+		addAll:'Add All',
+		removeAll:'Remove All',
+		itemsCount:'#{count} items selected',
 		itemsTotal:'#{count} itens total',
 		busy:'por favor aguarde...',
 		errorDataFormat:"Cannot add options, unknown data format",
