@@ -197,7 +197,11 @@ $.widget("ui.multiselect", {
 	},
 	selectNone: function() {
 		if (this.enabled()) {
-			this._batchSelect(this.selectedList.children('li.ui-element:visible'), false);
+			//User Confirmation before Deleting
+			var xconfirm=window.confirm("Tem certeza que deseja retirar todos os itens?")
+			if (xconfirm){
+				this._batchSelect(this.selectedList.children('li.ui-element:visible'), false);
+			}//xconfirm
 		}
 	},
 	select: function(text) {
@@ -750,10 +754,14 @@ $.widget("ui.multiselect", {
 	_registerRemoveEvents: function(elements) {
 		var that = this;
 		elements.unbind('click.multiselect').bind('click.multiselect', function() {
-			// ignore if busy...
-			if (!that.busy) {
-				that._setSelected($(this).parent(), false);
-			}
+			//User Confirmation before Deleting
+			var xconfirm=window.confirm("Tem certeza que deseja retirar esse item?")
+			if (xconfirm){
+				// ignore if busy...
+				if (!that.busy) {
+					that._setSelected($(this).parent(), false);
+				}
+			}//xconfirm
 			return false;
 		});
 		if (this.selectedList.data('multiselect.draggable')) {
@@ -881,11 +889,11 @@ var _dragHelper = function(event, ui) {
 $.extend($.ui.multiselect, {
 	getter: 'selectedValues enabled isBusy',
 	locale: {
-		addAll:'Add all',
-		removeAll:'Remove all',
-		itemsCount:'#{count} items selected',
-		itemsTotal:'#{count} items total',
-		busy:'please wait...',
+		addAll:'Ad. Todos',
+		removeAll:'Remover Todos',
+		itemsCount:'#{count} itens selecionados',
+		itemsTotal:'#{count} itens total',
+		busy:'por favor aguarde...',
 		errorDataFormat:"Cannot add options, unknown data format",
 		errorInsertNode:"There was a problem trying to add the item:\n\n\t[#{key}] => #{value}\n\nThe operation was aborted.",
 		errorReadonly:"The option #{option} is readonly",
